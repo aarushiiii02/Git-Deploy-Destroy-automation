@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 env:
-  aws region: us-west-2
+  aws-region: us-west-2
   aws_s3_bucket : aarushi-backend
   tfstate_file: terraState.tfstate
   db_table: aarushi-db
