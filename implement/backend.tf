@@ -1,8 +1,8 @@
 terraform{
     backend "s3"{
-        # bucket= "aarushi-backend"
+        # bucket= "aarushi-backend2"
         # key= "new.tfstate"
-        # region= "us-west-2"
-        # dynamodb_table= "aarushi-assignment-db"
+        # region= "us-east-1"
+        # dynamodb_table= "aarushi-final-db"
     }
 }

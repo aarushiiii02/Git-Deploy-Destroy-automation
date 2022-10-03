@@ -14,10 +14,10 @@ on:
   workflow_dispatch:
 
 env:
-  aws-region: us-west-2
-  aws_s3_bucket : aarushi-backend
+  aws-region: us-east-1
+  aws_s3_bucket : aarushi-backend2
   tfstate_file: terraState.tfstate
-  db_table: aarushi-db
+  db_table: aarushi-final-db
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
