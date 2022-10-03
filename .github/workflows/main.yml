@@ -1,17 +1,23 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: deploy infrastructure
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+env:
+aws region: us-west-2
+aws_s3_bucket : assignment-backendconfig
+tfstate_file: terraState.tfstate
+db_table: aarushi-assignment-db
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,6 +25,9 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    defaults:
+      run :
+        working-directory: ./implement
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -26,11 +35,26 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Terraform Init setup
+        run: hashicorp/terraform-github-actions/init@v0.4.0
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: AWS credentials
+        uses: aws-actions/configure-aws-credential@v11
+        with:
+          aws-region: ${{env.aws-region}}
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secret.AWS_SECRET_ACCESS_KEY}}
+          aws-session-token: ${{secret.AWS_SESSION_TOKEN}}
+      
+      - name: Terraform format
+        run:
+          terraform fmt
+      
+      - name: Terraform init
+        run:  
+          terraform init -reconfigure -backend-config="bucket=$aws_s3_bucket" -backend-config="key=$tfstate_file" -backend-config="dynamodb_table=$db_table"
+      
+      - name: Teraform Validate
+        run: 
+

@@ -8,6 +8,6 @@ module "s3-bucket" {
   bucket_name = "dashy33"
 }
 module "vpc" {
-  source = "../vpc"
-  cidr  = ""
-}
+   source = "../vpc"
+   cidr  = "10.0.0.0/16"
+ }
