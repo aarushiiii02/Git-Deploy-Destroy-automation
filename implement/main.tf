@@ -7,7 +7,7 @@ module "s3-bucket" {
   source = "../s3"
   bucket_name = "dashy33"
 }
-module "vpc" {
-   source = "../vpc"
-   cidr  = "10.0.0.0/16"
- }
+# module "vpc" {
+#    source = "../vpc"
+#    cidr  = "10.0.0.0/16"
+#  }

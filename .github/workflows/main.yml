@@ -15,9 +15,9 @@ on:
 
 env:
   aws region: us-west-2
-  aws_s3_bucket : assignment-backendconfig
+  aws_s3_bucket : aarushi-backend
   tfstate_file: terraState.tfstate
-  db_table: aarushi-assignment-db
+  db_table: aarushi-db
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -45,7 +45,7 @@ jobs:
           aws-region: ${{ env.aws-region }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          #aws-session-token: ${{ secret.AWS_SESSION_TOKEN }}
+          aws-session-token: ${{ secret.AWS_SESSION_TOKEN }}
       
       - name: Terraform format
         run:
