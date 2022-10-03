@@ -36,7 +36,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Terraform Init setup
-        run: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v2
+
+
 
       # Runs a set of commands using the runners shell
       - name: AWS credentials
