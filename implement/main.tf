@@ -1,11 +1,11 @@
 module "ec2-inst" {
   source = "../ec2"
   name = "implementation-modules"
-  bucket_name2 = "as2002"
+  bucket_name2 = "as2001"
 }
 module "s3-bucket" {
   source = "../s3"
-  bucket_name = "dashy33"
+  bucket_name = "dash2020"
 }
 # module "vpc" {
 #    source = "../vpc"
