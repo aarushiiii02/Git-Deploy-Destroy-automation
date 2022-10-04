@@ -5,7 +5,7 @@ module "ec2-inst" {
 }
 module "s3-bucket" {
   source = "../s3"
-  bucket_name = "dash2020"
+  bucket_name = "dashy123"
 }
 # module "vpc" {
 #    source = "../vpc"
